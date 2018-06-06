@@ -1,0 +1,61 @@
+#Steps for running an EC2 instance on AWS from the CLI.
+pip install awscli
+
+#To upgrade:
+pip install --upgrade awscli
+
+#Setup new user using access keys:
+aws configure
+
+#open credentials.csv and copy/paste the ID and secret access key into the prompts:
+#verify correct setup:
+aws iam get-user
+
+#Setup an EC2 instance from your browser. Configure security group. Create and download key pair.
+
+#Create a directory in root called .ssh:
+mkdir .ssh
+
+#Move downloaded key into this folder:
+mv "keyname" .ssh
+
+#Change permissions so that the key file can only be read by the owner:
+chmod 400 "keyname"
+
+#Login/ssh in to the EC2 Server: Example:
+ssh -i evolve-us-east2.pem ubuntu@ipadress
+
+#Install Nginx from with the AWS CLI:
+sudo apt-get install nginx
+
+#Start Nginx:
+sudo service nginx start
+
+#Check status of nginx:
+sudo systemctl status nginx
+
+#Access the website you just started by entering your EC2 instance's IP into your browser, you will see the nginx.
+
+#Stop the service:
+sudo systemctl stop nginx
+#Refresh browser and nothing will be there.
+
+#To avoide charges, stop your EC2 instance from your browser. 
+
+#BUILDING A VPC
+#From AWS Dashboard, select 'Your VPCs'. Then select 'Create VPC'. Continue to follow instructions from Intro. to Cyber Security Lab
+#AWS Part 3: Building a VPC. Then...Verify: 
+aws ec2 describe-vpcs
+aws ec2 describe-instances
+
+#Check both instance IDs
+aws ec2 describe-instance-status --instance-ids "yourinstance'sID"
+
+#Stop the 2 instances we created:
+aws ec2 stop-instances --instance-ids "yourPublicinstance'sID"
+aws ec2 stop-instances --instance-ids "yourPrivateinstance'sID"
+
+
+
+
+
