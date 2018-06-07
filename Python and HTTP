@@ -1,0 +1,4 @@
+#The code for running python scripts:
+python my_script.py
+
+#Lines that begin with the greater than sign ">" signify an interactive prompt. Lines without it signify a file.
