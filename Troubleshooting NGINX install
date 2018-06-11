@@ -1,0 +1,4 @@
+Enter in commands as follows 
+sudo yum install –y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install nginx
+#this will complete the installation and nginx will be installed. 
