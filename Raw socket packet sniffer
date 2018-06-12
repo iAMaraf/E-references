@@ -1,0 +1,23 @@
+import socket, sys
+
+try:
+   raw_socket = socket.socket(socket.PF_PACKET, socket.SOCK_RAW,
+                socket.htons(0x0800))
+except socket.error, e:
+    print 'Error occurred while creating socket. Error code: ' + str(e[0]) + ' ,
+           Error message : ' + e[1]
+    sys.exit()
+    
+while True:
+    packet = raw_socket.recvfrom(2048)
+    print packet
+    
+    
+    
+    
+    
+    
+    # raw_socket is the variable to which the socket is assigned 
+    # PF_PACKET indicates that the packet interface, PF_PACKET is Linux specific; AF_INET should be for windows
+    # SOCK_RAW specifies the use of a raw socket.
+    # htons(ox800) is the protocol. The value 0x800 specifies we are interested in the IP protocol. 
