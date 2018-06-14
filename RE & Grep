@@ -1,0 +1,65 @@
+#THIS IS AN EXAMPLE!
+
+root@kali:~/Desktop# cat regextest.txt
+#TEXT FROM FILE SHOWN HERE
+#TEXT FROM FILE SHOWN HERE
+#TEXT FROM FILE SHOWN HERE
+
+#USE GREP/EGREP (Global Regular Expressions & Extended GREP)  written as grep -E
+
+root@kali:~/Desktop# grep "the" regextest.txt
+#TEXT FROM FILE SHOWN HERE (starting with or including "the")
+#TEXT FROM FILE SHOWN HERE (starting with or including "the")
+#TEXT FROM FILE SHOWN HERE (starting with or including "the")
+
+#use the following to denote starting at the beginning of a line: ^
+root@kali:~/Desktop# grep "^the" regextest.txt
+#TEXT FROM FILE SHOWN HERE (starting with "the")
+#TEXT FROM FILE SHOWN HERE (starting with "the")
+#TEXT FROM FILE SHOWN HERE (starting with "the")
+
+#use the following to denote "beginning with..." and "are followed by...": "^word.*follwedby"   (* is a wildcard indicator)
+root@kali:~/Desktop# grep "^the.*stars" regextest.txt
+#TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by the word stars)
+#TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by the word stars)
+#TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by the word stars)
+
+#use the following to denote "beginning with..." and "end with..": "^word.*endwith$"   ($ end indicator)
+root@kali:~/Desktop# grep "^the.*stars$" regextest.txt
+#TEXT FROM FILE SHOWN HERE (starting with "the" and end with the word stars)
+#TEXT FROM FILE SHOWN HERE (starting with "the" and end with the word stars)
+#TEXT FROM FILE SHOWN HERE (starting with "the" and end with the word stars)
+
+#GREP can be used to look for more complex patterns in a line
+#The following searches for lines beginning with "the" and then are followed by "quick" OR "brown" and then must end with "stars"
+root@kali:~/Desktop# grep "^the \(quick\|brown\).*stars" regextest.txt
+#TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by quick or brown and end with stars)
+#TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by quick or brown and end with stars)
+#TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by quick or brown and end with stars)
+
+#The following is used to find lines within the lines we have already narrowed down to, to find lines beginning with "the" and are followed by "stars"
+root@kali:~/Desktop# grep "^the.*stars" regextest.txt
+#NARROWED DOWN TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by the word stars)
+#NARROWED DOWN TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by the word stars)
+#NARROWED DOWN TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by the word stars)
+
+#The following searches for lines beginning with "the" and that must end with "stars", within narrowed down lines we have already.
+root@kali:~/Desktop# grep "^the.*stars$" regextest.txt
+#TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by quick or brown and end with stars)
+#TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by quick or brown and end with stars)
+#TEXT FROM FILE SHOWN HERE (starting with "the" and are followed by quick or brown and end with stars)
+
+#The following searches for lines beginning with "the" and then are followed by "quick" OR "brown" in a row (so both) and then must end with "stars"
+#Pay attention to the spaces
+root@kali:~/Desktop# grep "^the \( quick\| brown\){2\}.*stars" regextest.txt
+
+#The following searches for lines beginning with "the" and then are followed by "quick" OR "brown" 1 or more of these terms and then must end with "stars"
+#Pay attention to the spaces 
+root@kali:~/Desktop# grep "^the \( quick\| brown\)\+.*stars" regextest.txt
+
+#The following searches for only our request: -o (only)
+root@kali:~/Desktop# grep -o "^the \( quick\| brown\)\+.*stars" regextest.txt
+
+
+
+
