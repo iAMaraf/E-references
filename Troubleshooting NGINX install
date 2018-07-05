@@ -5,3 +5,4 @@ sudo yum install –y https://dl.fedoraproject.org/pub/epel/epel-release-latest-
 sudo yum install nginx
 
 # this will complete the installation and nginx will be installed. 
+# This is the way it would get installed if you were using the amazon machine image as opposed to the Ubuntu instance. 
